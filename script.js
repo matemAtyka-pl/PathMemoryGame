@@ -50,9 +50,12 @@ const getUnusedCoordinates = (grid) => {
 const positionGridId = (x, y) => "pos_"+x+"_"+y;
 const jqGridId = (x, y) => "#pos_"+x+"_"+y;
 
-const setXYPosition = (jqName, x, y) => {
-    $(jqName).css("left", (1 + 11 * x) + "vmin");
-    $(jqName).css("top", (89 - 11 * y) + "vmin");
+const getLeft = (x) => (1 + 11 * x) + "vmin";
+const getTop = (y) => (89 - 11 * y) + "vmin";
+
+const getXYPosition = (jqName, x, y) => {
+    $(jqName).css("left", getLeft(x));
+    $(jqName).css("top", getTop(y));
 };
 
 const paintGrid = (grid) => {
@@ -66,7 +69,7 @@ const paintGrid = (grid) => {
         if(grid[x][y]) {
             $(jqGridId(x, y)).css("background-image", "url('colorsymbolswheel.svg')");
         }
-        setXYPosition(jqGridId(x, y), x, y);
+        getXYPosition(jqGridId(x, y), x, y);
     }
 };
 
@@ -92,7 +95,7 @@ const makeCovers = (grid) => {
             element.id = "cover" + coversCreated++
             document.body.appendChild(element);
             covers[x][y] = element;
-            setXYPosition("#"+element.id, x, y);
+            getXYPosition("#"+element.id, x, y);
             $("#"+element.id).css("background-image", setGradient(covers, x, y));
         }
     }
@@ -105,4 +108,40 @@ var grid = config.defaultGrid();
 const addAllItems = () => {
     for(var i = 1; i <= 12; i++)
         addNewItem(grid, i);
+}
+
+const findClickables = (position, covers) => {
+    for(var x = position[0] - 2; x <= position[0] + 2; x++)
+    for(var y = position[1] - 2; y <= position[1] + 2; y++) {
+        if((x == position[0] && y == position[1]) || covers[x] == null || covers[x][y] == null)
+            continue;
+        var active = Math.abs(x - position[0]) + Math.abs(y - position[1]) == 1;
+        $("#" + covers[x][y].id).css("border-color", "blue");
+        $("#" + covers[x][y].id).css("border-radius", "10px");
+        $("#" + covers[x][y].id).css("border-style", "solid");
+        $("#" + covers[x][y].id).css("border-width", active ? "5px" : "0px");
+        $("#" + covers[x][y].id).css("left", active ? "calc("+getLeft(x)+" - 5px)" : getLeft(x));
+        $("#" + covers[x][y].id).css("top", active ? "calc("+getTop(y)+" - 5px)" : getTop(y));
+        $("#" + covers[x][y].id).prop("onclick", null).off("click");
+        if(active) {
+            var movedCover = covers[x][y];
+            $("#" + movedCover.id).attr('data-x', x);
+            $("#" + movedCover.id).attr('data-y', y);
+            $("#" + movedCover.id).click(function(){
+                $(this).css("border-width", active ? "5px" : "0px");
+                $(this).animate({top: getTop(position[1]), left: getLeft(position[0])},
+                    60, 
+                    function(){
+                        covers[position[0]][position[1]] = document.getElementById($(this).prop('id'));
+                        position[0] = $(this).attr('data-x');
+                        position[1] = $(this).attr('data-y');
+                        findClickables(position, covers);
+                    }
+                );
+            });
+        } else {
+            $("#" + covers[x][y].id).attr('data-x', null);
+            $("#" + covers[x][y].id).attr('data-y', null);
+        }
+    }
 }
