@@ -13,7 +13,17 @@
   </head>
   <body>
   <script type="text/javascript">
-  $(document).ready(function(){paintGrid(grid);});
+  $(document).ready(function(){
+    paintGrid(grid);
+    covers = makeCovers();
+    addAllItems();
+    paintGrid(grid);
+    position = getUnusedCoordinates(grid);
+    $("#"+covers[position[0]][position[1]].id).hide(333, function(){
+      document.body.removeChild(covers[position[0]][position[1]]);
+      covers[position[0]][position[1]]=null;
+    });
+  });
   </script>
   </body>
 </html>

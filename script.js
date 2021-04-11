@@ -37,6 +37,16 @@ const addNewItem = (grid, n) => {
     }
 };
 
+const getUnusedCoordinates = (grid) => {
+    while(true){
+        var x = Math.floor(Math.random() * config.width); 
+        var y = Math.floor(Math.random() * config.height);
+        if(config.isValidNewSpot(x, y, grid)) {
+            return [x, y];
+        }
+    }
+};
+
 const positionGridId = (x, y) => "pos_"+x+"_"+y;
 const jqGridId = (x, y) => "#pos_"+x+"_"+y;
 
@@ -60,23 +70,30 @@ const paintGrid = (grid) => {
     }
 };
 
-const setGradient = (covers, x, y) => "linear-gradient(to " +
-    (((x + y) % 2) ? "left" : "rigt") + "top, rgba(" +
-    Math.floor(Math.random() * 192) + "," + Math.floor(Math.random() * 192) + "," + Math.floor(Math.random() * 192) + "," + Math.random() +") 1%, rgb(" +
-    Math.floor(Math.random() * 192) + "," + Math.floor(Math.random() * 192) + "," + Math.floor(Math.random() * 192) + ") 2%, ";
+const randomRgb = (x, y) => Math.floor(Math.pow(Math.sin(2 + x * x + y * y * y + x / 10 - y / 10), 2) * 256) + "," + Math.floor(Math.pow(Math.sin(3 + x * x * y + y * y + x / 9 + y / 3), 2) * 256) + "," + Math.floor(Math.pow(Math.sin(2 + x * x * y * y - y * 2 + x / 22), 2) * 256) ;
+const randomColor = (x, y, a) => a ? "rgba(" + randomRgb(x, y) + "," + Math.pow(Math.sin(1 + x / 2.1 + y * y / 7), 2) + ")" : "rgb(" + randomRgb(x, y) + ")";
 
-const makeCovers = () => {
+const setGradient = (covers, x, y) => {
+    var direction = ((x + y) % 2) ? "to left top" : "to right top";
+    var x1 = ((x + y) % 2) ? x + 0.5 : (x - 0.5);
+    var x2 = ((x + y) % 2) ? x - 0.5 : (x + 0.5);
+    var y1 = y - 0.5;
+    var y2 = y + 0.5;
+    return "linear-gradient(" + direction + "," + randomColor(x1, y1, true) + "0%," + randomColor(x1, y1, false) + "7%," + randomColor(x2, y2, false) + "93%," + randomColor(x2, y2, true) + "100%)";
+}
+
+const makeCovers = (grid) => {
     var covers = new Array();
     var coversCreated = 0;
     for(var x = 0; x < config.width; x++) {
         covers[x] = new Array();
         for(var y = 0; y < config.height; y++) {
             var element = document.createElement("div");
-            element.id = "cover" + coversCreated++;
+            element.id = "cover" + coversCreated++
             document.body.appendChild(element);
             covers[x][y] = element;
             setXYPosition("#"+element.id, x, y);
-            $(jqGridId(x, y)).css("background-image", setGradient(covers, x, y));
+            $("#"+element.id).css("background-image", setGradient(covers, x, y));
         }
     }
     return covers;
@@ -84,5 +101,8 @@ const makeCovers = () => {
 
 
 var grid = config.defaultGrid();
-for(var i = 1; i <= 12; i++)
-    addNewItem(grid, i);
+
+const addAllItems = () => {
+    for(var i = 1; i <= 12; i++)
+        addNewItem(grid, i);
+}
