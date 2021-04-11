@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256">
+    <circle style="fill:rgb(255,255,255)" cx="128" cy="128" r="96" />
+
+    <circle style="fill:rgba(0,0,0,0);stroke-width:1;stroke:rgb(0,0,0)" cx="128" cy="128" r="88" />
+
+    <circle style="fill:hsl(60,100%,50%);stroke-width:0" cx="128" cy="48" r="30" transform="rotate(0 128 128)" />
+    
+    <line x1="94" y1="48" x2="162" y2="48" style="stroke:hsl(240,100%,50%);stroke-width:16;stroke-linecap:round"  transform="rotate(120 128 128)" />
+    
+    <line x1="128" y1="14" x2="128" y2="82" style="stroke:hsl(0,100%,50%);stroke-width:16;stroke-linecap:round"  transform="rotate(240 128 128)" />
+    
+    <circle style="fill:hsl(120,90%,40%);stroke-width:1;stroke:rgb(0,0,0)" cx="128" cy="48" r="30" transform="rotate(60 128 128)" />
+    <line x1="94" y1="48" x2="162" y2="48" style="stroke:hsl(120,90%,40%);stroke-width:16;stroke-linecap:round"  transform="rotate(60 128 128)" />
+
+    <circle style="fill:hsl(30,90%,40%);stroke-width:1;stroke:rgb(0,0,0)" cx="128" cy="48" r="30" transform="rotate(-60 128 128)" />
+    <line x1="128" y1="14" x2="128" y2="82" style="stroke:hsl(30,90%,40%);stroke-width:16;stroke-linecap:round"  transform="rotate(-60 128 128)" />
+
+    <line x1="94" y1="48" x2="162" y2="48" style="stroke:hsl(300,90%,40%);stroke-width:16;stroke-linecap:round"  transform="rotate(180 128 128)" />
+    <line x1="128" y1="14" x2="128" y2="82" style="stroke:hsl(300,90%,40%);stroke-width:16;stroke-linecap:round"  transform="rotate(180 128 128)" />
+
+    <circle style="fill:hsl(30,100%,0%)" cx="128" cy="48" r="28" transform="translate(0 80)" />
+    <line x1="96" y1="48" x2="160" y2="48" style="stroke:hsl(300,100%,0%);stroke-width:8;stroke-linecap:round"  transform="translate(0 80)" />
+    <line x1="128" y1="16" x2="128" y2="80" style="stroke:hsl(300,100%,0%);stroke-width:8;stroke-linecap:round"  transform="translate(0 80)" />
+
+    <circle style="fill:rgba(0,0,0,0);stroke-width:1;stroke:rgba(0,0,0,0.5)" cx="128" cy="128" r="80" />
+</svg>
