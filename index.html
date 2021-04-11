@@ -3,22 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>title</title>
+    <title>Game</title>
     <meta name="description" content="A game to practice memory and plan paths" />
     <meta name="keywords" content="game,memory,path" />
     <link rel="shortcut icon" href="colorsymbolswheel.svg" />
     <link rel="stylesheet" href="main.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
   </head>
   <body>
   <script type="text/javascript">
-   function autorun()
-   {
-    
-   }
-   if (window.addEventListener) window.addEventListener("load", autorun, false);
-   else if (window.attachEvent) window.attachEvent("onload", autorun);
-   else window.onload = autorun;
+  $(document).ready(function(){paintGrid(grid);});
   </script>
   </body>
 </html>
