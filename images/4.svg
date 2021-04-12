@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256">
+    <circle style="fill:rgb(255,255,255)" cx="128" cy="128" r="96" />
+
+    <circle style="fill:rgba(0,0,0,0);stroke-width:1;stroke:rgb(0,0,0)" cx="128" cy="128" r="88" />
+
+    <circle style="fill:hsl(120,90%,40%);stroke-width:1;stroke:rgb(0,0,0)" cx="128" cy="128" r="60" transform="rotate(0 128 128)" />
+    <line x1="60" y1="128" x2="196" y2="128" style="stroke:hsl(120,90%,40%);stroke-width:32;stroke-linecap:round"  transform="rotate(0 128 128)" />
+
+    <circle style="fill:rgba(0,0,0,0);stroke-width:1;stroke:rgba(0,0,0,0.5)" cx="128" cy="128" r="80" />
+</svg>

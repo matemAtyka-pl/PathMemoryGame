@@ -67,7 +67,7 @@ const paintGrid = (grid) => {
             document.body.appendChild(element);
         }
         if(grid[x][y]) {
-            $(jqGridId(x, y)).css("background-image", "url('colorsymbolswheel.svg')");
+            $(jqGridId(x, y)).css("background-image", "url('images/"+grid[x][y]+".svg')");
         }
         getXYPosition(jqGridId(x, y), x, y);
     }
