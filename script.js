@@ -102,6 +102,27 @@ const makeCovers = (grid) => {
     return covers;
 };
 
+const makeGoals = (grid) => {
+    var goals = new Array();
+    var goalsCreated = 0;
+    for(var i = 1; i <= config.items; i++) {
+        var element = document.createElement("div");
+        element.id = "goal" + goalsCreated++
+        document.body.appendChild(element);
+        goals[i] = element;
+        
+        var y = i > 6 ? 1 : 0;
+        var x = i > 6 ? i - 13 : i - 7;
+
+        $("#"+element.id).css("left", "calc(100% - " + (-11 * x) +"vmin)");
+        $("#"+element.id).css("top", (y + 0.25) * 11 + "vmin");
+        $("#"+element.id).css("z-index", 3);
+        $("#"+element.id).css("background-image", "url('images/"+i+".svg')");
+        goals[i] = element;
+    }
+    return covers;
+};
+
 
 var grid = config.defaultGrid();
 

@@ -7,3 +7,10 @@ div {
     background-color: rgba(0,0,0,0.5);
     background-size: 100% 100%;
 }
+
+#score {
+    left: 1vw;
+    top: 1vh;
+    font-family: 'Lobster', cursive;
+    font-size: 5vmin;
+}
