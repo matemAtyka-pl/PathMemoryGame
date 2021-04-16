@@ -1,5 +1,11 @@
 * {
     position: fixed;
+    background-color: white;
+}
+body {
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
 }
 div {
     width: 10vmin;
@@ -13,4 +19,14 @@ div {
     top: 1vh;
     font-family: 'Lobster', cursive;
     font-size: 5vmin;
+}
+
+.punishment {
+    font-family: 'Lobster', cursive;
+    font-size: 3vmin;
+}
+
+.goal {
+    font-family: 'Lobster', cursive;
+    font-size: 2vmin;
 }

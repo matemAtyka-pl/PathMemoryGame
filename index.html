@@ -45,12 +45,14 @@
     addAllItems();
     paintGrid(grid);
     goals = makeGoals();
+    cards = makeCards(goals);
     position = getUnusedCoordinates(grid);
     $(".preload").hide();
     $("#"+covers[position[0]][position[1]].id).hide(333, function(){
       document.body.removeChild(covers[position[0]][position[1]]);
       covers[position[0]][position[1]]=null;
     });
+    currentGoal = getCurrentGoal(cards, goals);
     findClickables(position, covers);
   });
   </script>
